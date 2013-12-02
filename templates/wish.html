@@ -1,0 +1,57 @@
+<!doctype html>
+  <head>
+  <title>Happy Birthday</title>
+  <!--<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Wendy+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Rouge+Script' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/wish.css')}}">
+  <script type="text/javascript">
+    $.fn.teletype = function(opts){
+      var $this = this,
+        defaults = {
+          animDelay: 50
+        },
+        settings = $.extend(defaults, opts);
+    
+        $.each(settings.text.split(''), function(i, letter){
+          setTimeout(function(){
+            $this.html($this.html() + letter);
+          }, settings.animDelay * i);
+        });
+    };
+
+    $(function(){
+      $('#message').teletype({
+        animDelay: 100,
+        text: $('.hidden-message').text()
+      });
+      $(function(){
+        $('#sender').teletype({
+          animDelay: 100,
+          text: $('.hidden-sender').text()
+        });
+      }); 
+    });
+
+  </script>
+  </head>
+  <body>
+    <a href="https://github.com/ganesshkumar"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:10;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <div class="container">
+      <div class="balloon">
+        <div><span>☺</span></div>
+        <div><span>B</span></div>
+        <div><span>D</span></div>
+        <div><span>A</span></div>
+        <div><span>Y</span></div>
+        <div><span>!</span></div>
+      </div>
+      <h1>{{ to }}</h1>
+      <h2 id="message"></h2>
+      <h3> -{{ from_ }}</h3>
+    </div>
+    <div class="hidden-message">{{ message }}</div>
+  </body>
+</html>
